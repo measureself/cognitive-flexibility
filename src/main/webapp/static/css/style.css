@@ -1,0 +1,74 @@
+html, body {
+    height: 80%;
+    background-color: black;
+    text-decoration-color: white;
+    color: white;
+    text-align: center;
+    font-family: Arial, "Times New Roman", Georgia, Serif;
+}
+
+#entry {
+    text-align: center;
+    font-size: 2em;    
+}
+
+#guide {
+    text-align: center;
+    font-size: 2em;
+}
+
+#result {
+    text-align: center;
+    font-size: 2em;
+}
+
+#wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    font-size: 4em;
+}
+
+#pad {
+    /* background-color: orange; */
+    width: 100%;
+    height: 10%;
+}
+
+#top {
+    /* background-color: green; */
+    color: #fff;
+}
+
+hr {
+    width: 25%;
+    height: 2px;
+    background: white;
+    
+}
+
+#divider {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#bottom {
+    vertical-align: middle;
+    /* background-color: blue; */
+    color: #fff;
+    text-align: center;
+}
+
+#timingbox {
+    background-color: #fff;
+    color: #fff;
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 100;
+}

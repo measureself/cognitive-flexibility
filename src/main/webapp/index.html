@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1></h1>
+
+        <div id="entry">
+            <div id="auth-form">
+                <form method="POST" action="app/formauth">
+                    Please enter your participant ID and press Continue.<br/>
+                    <input id="participant-id" name="username" />
+                    <input name="password" value="" type="hidden"/><br/>
+                    <input type="submit" value="Continue"/>
+                </form>
+            </div>
+            <div id="entry-info"></div><br/>
+
+            <div id="info"></div>
+        </div>
+
+        <script src="static/lib/jquery-1.9.1.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                var url = $(location).attr("href");
+                if (url.indexOf("error") !== -1) {
+                    $("#entry-info").html("Verify your username and try again.");
+                }
+            });
+        </script>
+    </body>
+</html>

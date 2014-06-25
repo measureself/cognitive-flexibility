@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1></h1>
+
+        <div id="entry">
+        </div>
+
+        <div id="guide" style="display: none;">
+        </div>
+
+        <div id="wrapper" style="display: none;">
+            <div id="pad"></div>
+            <div id="TOP">TOP</div>
+            <div id="divider"><hr/></div>
+            <div id="BOTTOM">BOTTOM</div>
+        </div>
+
+        <div id="result" style="display: none;">
+
+        </div>
+
+        <div id="timingbox" style="display:none"></div>
+
+        <script src="static/lib/jquery-1.9.1.min.js"></script>
+        <script src="static/scripts/taskswitching-core.js"></script>
+        <script src="static/scripts/taskswitching-ui.js"></script>
+        <script src="static/scripts/taskswitching-app.js"></script>
+        <script src="static/conf/taskswitching-config.js"></script>
+
+        <script>
+            var waitForSpace = function() {
+                console.log("waiting for space");
+
+                $(document).one('keydown', function(e) {
+                    if (e.which === 32) {
+                        $("#guide").hide();
+                        ts.program.init();
+                    } else {
+                        waitForSpace();
+                    }
+                });
+            }
+
+            $(document).ready(function() {
+                if (location.pathname.indexOf("mobile") !== -1) {
+                    $("#entry").html($("#english-mobile-entry").text());
+                } else {
+                    $("#entry").html($("#english-entry").text());
+                }
+
+                $("#result").html($("#result-english").text());
+
+                $.ajax({
+                    url: 'app/whoami',
+                    success: function(data, textStatus) {
+                        var participantDetails = JSON.parse(data);
+                        console.log(data);
+                        $('#my-name').text(participantDetails.username);
+                        $('#participant-id').val(participantDetails.id);
+                    },
+                    dataType: "text",
+                    type: "GET",
+                    async: false});
+
+                $("#info").show();
+
+                waitForSpace();
+            });
+        </script>     
+        <script id="english-entry" type="text/template">
+            <input type="hidden" id="participant-id"/>
+
+            <div id="info" style="display:none;">
+            You are about to do four tasks, where the speed of performance is measured.<br/><br/>
+            Please read the instructions of each test carefully before you start.<br/><br/>
+            Press spacebar to start.
+            </div>
+        </script>
+        <script id="english-mobile-entry" type="text/template">
+            <input type="hidden" id="participant-id"/>
+
+            <div id="info" style="display:none;">
+            You are about to do four tasks, where the speed of performance is measured.<br/><br/>
+            Please read the instructions of each test carefully before you start.<br/><br/>
+            Press black to start.
+            </div>
+        </script>   
+        <script id="result-english" type="text/template">
+            <p>Results from previous test:</p>
+            <div>Hits: <span id="hitsPercentage"></span> %</div>
+            <div>Reaction time: <span id="reactionTime"></span> ms (avg)</div>
+        </script>
+        <script id="moment-english" type="text/template">
+            One moment...
+        </script>
+    </body>
+</html>
